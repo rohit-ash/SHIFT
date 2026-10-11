@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Self-play is not enough: human imitation improves self-play autonomy in the wild</title>
+    <meta name="description" content="Fine-tuning a self-play driving policy on human demonstrations, stabilized by KL regularization, improves comfort, human-likeness and safety in simulation and on public roads.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <header class="header">
+        <div class="logos" aria-label="Research institutions">
+            <img class="logo-motional" src="imgs/motional.png" alt="Motional" width="225">
+            <!-- Drop the official files into imgs/ with these names. Until then they hide themselves. -->
+            <img class="logo-cmu" src="imgs/cmu.png" alt="Carnegie Mellon University" width="190" onerror="this.remove()">
+            <img class="logo-nyu" src="imgs/nyu-tandon.png" alt="NYU Tandon School of Engineering" width="170" onerror="this.remove()">
+        </div>
+
+        <!-- Uncomment once the decision is public:
+        <div class="publication-badge sans-serif">CoRL 2026</div>
+        -->
+
+        <h1 class="title">Self-play is not enough: human imitation improves self-play autonomy in the wild</h1>
+
+        <div class="authors">
+            <span class="author"><a href="https://openreview.net/profile?id=~Marc_Heim1" target="_blank">Marc Heim</a><sup>1*&Dagger;</sup></span>,
+            <span class="author"><a href="https://openreview.net/profile?id=~Bassam_Helou1" target="_blank">Bassam Helou</a><sup>1*&Dagger;</sup></span>,
+            <span class="author"><a href="https://openreview.net/profile?id=~Rohit_Satishkumar1" target="_blank">Rohit Satishkumar</a><sup>1,2*&sect;</sup></span>,
+            <span class="author"><a href="https://openreview.net/profile?id=~Momchil_Tomov1" target="_blank">Momchil Tomov</a><sup>1*</sup></span>,
+            <span class="author"><a href="https://openreview.net/profile?id=~Hansford_C._Hendargo1" target="_blank">Hansford C. Hendargo</a><sup>1</sup></span>,
+            <span class="author"><a href="https://openreview.net/profile?id=~Nicolas_Rey1" target="_blank">Nicolas Rey</a><sup>1</sup></span>,
+            <span class="author"><a href="https://openreview.net/profile?id=~Gianmarco_Bernasconi1" target="_blank">Gianmarco Bernasconi</a><sup>1&Dagger;</sup></span>,
+            <span class="author"><a href="https://openreview.net/profile?id=~Joseph_Baker3" target="_blank">Joseph Baker</a><sup>1</sup></span>,
+            <span class="author"><a href="https://openreview.net/profile?id=~Alexander_Boule1" target="_blank">Alexander Boule</a><sup>1</sup></span>,
+            <span class="author">Rafael DaSilva<sup>1</sup></span>,
+            <span class="author"><a href="https://openreview.net/profile?id=~Abed_Ghanbari1" target="_blank">Abed Ghanbari</a><sup>1</sup></span>,
+            <span class="author">Cedric Warny<sup>1</sup></span>,
+            <span class="author"><a href="https://openreview.net/profile?id=~Yi_Huo3" target="_blank">Yi Huo</a><sup>1</sup></span>,
+            <span class="author"><a href="https://openreview.net/profile?id=~Phuc_Xuan_Nguyen2" target="_blank">Phuc Nguyen</a><sup>1</sup></span>,
+            <span class="author"><a href="https://openreview.net/profile?id=~Neset_Unver_Akmandor1" target="_blank">Unver Akmandor</a><sup>1</sup></span>,
+            <span class="author"><a href="https://openreview.net/profile?id=~Sarjak_Thakkar1" target="_blank">Sarjak Thakkar</a><sup>1</sup></span>,
+            <span class="author"><a href="https://openreview.net/profile?id=~Daphne_Cornelisse1" target="_blank">Daphne Cornelisse</a><sup>3</sup></span>,
+            <span class="author"><a href="https://openreview.net/profile?id=~Eugene_Vinitsky1" target="_blank">Eugene Vinitsky</a><sup>3</sup></span>,
+            <span class="author"><a href="https://openreview.net/profile?id=~Forbes_Howington1" target="_blank">Forbes Howington</a><sup>1</sup></span>,
+            <span class="author"><a href="https://openreview.net/profile?id=~Boaz_Floor1" target="_blank">Boaz Floor</a><sup>1</sup></span>,
+            <span class="author"><a href="https://openreview.net/profile?id=~Yiluan_Guo1" target="_blank">Yiluan Guo</a><sup>1</sup></span>,
+            <span class="author"><a href="https://openreview.net/profile?id=~Samuel_Findler1" target="_blank">Samuel Findler</a><sup>1</sup></span>,
+            <span class="author"><a href="https://openreview.net/profile?id=~Sourabh_Vora1" target="_blank">Sourabh Vora</a><sup>1</sup></span>
+        </div>
+
+        <div class="affiliations">
+            <sup>1</sup> Motional AD Inc. | <sup>2</sup> Carnegie Mellon University | <sup>3</sup> NYU Tandon School of Engineering
+        </div>
+        <div class="author-notes">
+            <span><sup>*</sup> These authors contributed equally to this work.</span>
+            <span><sup>&Dagger;</sup> Work done while at Motional. &nbsp; <sup>&sect;</sup> Work done during an internship at Motional.</span>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="https://openreview.net/forum?id=s8ZiyIAn3z" class="btn btn-primary" target="_blank">OpenReview Paper</a>
+            <!-- Swap in the arXiv link and drop btn-disabled once it is up -->
+            <a class="btn btn-disabled" aria-disabled="true">arXiv (coming soon)</a>
+            <a href="#method" class="btn">Method</a>
+            <a href="#simulation" class="btn">Simulation Results</a>
+            <a href="#deployment" class="btn">Public-Road Deployment</a>
+            <a href="#citation" class="btn">Citation</a>
+        </div>
+    </header>
+
+    <section class="content-section" id="intro">
+        <div class="abstract-text">
+            <p>Self-play reinforcement learning at scale has become a powerful way to train autonomous driving policies. Agents that learn by driving against copies of themselves in simulation become very good at avoiding collisions and navigating stably, without ever seeing a human drive.</p>
+            <p>That last part is also the problem. A policy trained purely through self-play never sees how people actually drive, so its trajectories can look unnatural: it taps the brakes, oscillates, and makes choices that a passenger or a nearby driver would not expect. Robustness alone does not make a policy comfortable or predictable on a real road.</p>
+            <p>We present a hybrid training framework that <strong>fine-tunes a pretrained self-play policy on real-world human driving demonstrations</strong>, without changing the underlying reinforcement learning algorithm. The result is more comfortable, more human-like and safer in simulation, and the gains carry over to self-driving cars on public roads. To our knowledge, this is the first evaluation of self-play and self-play with human imitation on public roads.</p>
+        </div>
+    </section>
+
+    <section class="content-section" id="method">
+        <h2 class="section-title sans-serif">How it works</h2>
+
+        <!-- Replace with: <img src="imgs/figure1.png" alt="Training pipeline overview" class="figure-img"> -->
+        <div class="placeholder" role="img" aria-label="Figure placeholder">imgs/figure1.png &mdash; training pipeline overview</div>
+        <div class="figure-caption">Figure 1: Self-play pretraining followed by fine-tuning with human imitation in agent-on-rails simulation, regularized toward the frozen self-play policy.</div>
+
+        <div class="abstract-text">
+            <p>We start from a policy pretrained with large-scale self-play using PPO with advantage filtering. Fine-tuning keeps that algorithm exactly as it is and changes three things around it.</p>
+            <p><strong>Agent-on-rails simulation.</strong> We replay logged real-world driving scenes. The ego vehicle is rolled out by the learned policy, while every other agent is replayed from its logged human trajectory. The policy therefore practices in traffic that behaves the way real traffic did.</p>
+            <p><strong>Human imitation as a reward term.</strong> The distance between the ego trajectory and the logged human expert trajectory is added as one more term in the reward. Nothing else about the RL objective changes, so fine-tuning reuses the same training stack as pretraining.</p>
+            <p><strong>KL regularization.</strong> Fine-tuning for a long time on human data risks erasing what self-play taught the policy. We add a KL loss against the frozen pretrained self-play policy, which lets fine-tuning run for longer while keeping the robustness of the base policy.</p>
+        </div>
+    </section>
+
+    <section class="content-section" id="simulation">
+        <h2 class="section-title sans-serif">Results in simulation</h2>
+        <div class="abstract-text">
+            <p>Compared to the self-play baseline, fine-tuning with human imitation improves every metric we track across comfort, human-likeness and safety. Brake taps drop by more than a factor of three, and the collision rate falls from 2.7% to 1.6%.</p>
+        </div>
+
+        <div class="table-wrap">
+            <table class="results-table">
+                <thead>
+                    <tr>
+                        <th scope="col">Metric</th>
+                        <th scope="col">Better</th>
+                        <th scope="col">Self-play</th>
+                        <th scope="col">+ Human imitation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="group"><td colspan="4">Comfort</td></tr>
+                    <tr><td>Brake tap rate</td><td>&darr;</td><td>26%</td><td class="ours">8%</td></tr>
+                    <tr><td>Oscillation rate</td><td>&darr;</td><td>19%</td><td class="ours">11%</td></tr>
+                    <tr class="group"><td colspan="4">Human-likeness</td></tr>
+                    <tr><td>ADE</td><td>&darr;</td><td>7.3 m</td><td class="ours">6.0 m</td></tr>
+                    <tr><td>FDE</td><td>&darr;</td><td>16 m</td><td class="ours">13 m</td></tr>
+                    <tr class="group"><td colspan="4">Safety</td></tr>
+                    <tr><td>Collision rate</td><td>&darr;</td><td>2.7%</td><td class="ours">1.6%</td></tr>
+                    <tr><td>Drivable area violations</td><td>&darr;</td><td>0.8%</td><td class="ours">0.6%</td></tr>
+                    <tr><td>Traffic light violations</td><td>&darr;</td><td>0.3%</td><td class="ours">0.2%</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="figure-caption">Table 1: Closed-loop simulation metrics for the self-play baseline and the fine-tuned policy.</div>
+    </section>
+
+    <section class="content-section" id="deployment">
+        <h2 class="section-title sans-serif">Driving on public roads</h2>
+        <div class="abstract-text">
+            <p>We deployed both policies on self-driving cars and drove them on public roads. The improvements we saw in simulation showed up in the real world as well.</p>
+        </div>
+
+        <div class="stat-row">
+            <div class="stat">
+                <div class="stat-label">Miles between brake taps</div>
+                <div class="stat-values">
+                    <span class="stat-before">1.13</span>
+                    <span class="stat-arrow" aria-label="to">&rarr;</span>
+                    <span class="stat-after">7.3</span>
+                    <span class="stat-unit">mi</span>
+                </div>
+            </div>
+            <div class="stat">
+                <div class="stat-label">Safety takeovers</div>
+                <div class="stat-values">
+                    <span class="stat-before">1 every 0.59 mi</span>
+                    <span class="stat-arrow" aria-label="to">&rarr;</span>
+                    <span class="stat-after">None</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Optional figure: <img src="imgs/figure2.png" alt="Real-world deployment" class="figure-img">
+             <div class="figure-caption">Figure 2: ...</div> -->
+
+        <div class="concept-block">
+            <h3 class="concept-header sans-serif">Side-by-side drives</h3>
+            <!-- Duplicate this grid for each scenario. Replace each placeholder div with:
+                 <iframe src="https://www.youtube.com/embed/VIDEO_ID" allowfullscreen loading="lazy"></iframe>
+                 or for a self-hosted file:
+                 <video src="videos/clip.mp4" controls muted playsinline></video> -->
+            <div class="video-grid-2-col">
+                <div class="grid-header">Self-play</div>
+                <div class="grid-header">Self-play + human imitation</div>
+                <div class="video-wrapper">
+                    <div class="video-container">
+                        <div class="placeholder">YouTube embed</div>
+                    </div>
+                    <div class="video-caption">Scenario 1 &mdash; Self-play</div>
+                </div>
+                <div class="video-wrapper">
+                    <div class="video-container">
+                        <div class="placeholder">YouTube embed</div>
+                    </div>
+                    <div class="video-caption">Scenario 1 &mdash; Self-play + human imitation</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section" id="looking-ahead">
+        <h2 class="section-title sans-serif">Looking ahead</h2>
+        <div class="abstract-text">
+            <p>Self-play gives a driving policy robustness, and human data gives it the behavior people expect. Our results suggest that post-training a self-play policy with human imitation, stabilized by KL regularization, is a promising direction for deployable autonomous driving systems.</p>
+        </div>
+    </section>
+
+    <section class="content-section" id="citation">
+        <h2 class="section-title sans-serif">Citation</h2>
+        <p>If you find this work useful in your research, please consider citing:</p>
+<div class="citation-block">@inproceedings{heim2026selfplay,
+  title={Self-play is not enough: human imitation improves self-play autonomy in the wild},
+  author={Heim, Marc and Helou, Bassam and Satishkumar, Rohit and Tomov, Momchil and
+          Hendargo, Hansford C. and Rey, Nicolas and Bernasconi, Gianmarco and Baker, Joseph and
+          Boule, Alexander and DaSilva, Rafael and Ghanbari, Abed and Warny, Cedric and
+          Huo, Yi and Nguyen, Phuc and Akmandor, Unver and Thakkar, Sarjak and
+          Cornelisse, Daphne and Vinitsky, Eugene and Howington, Forbes and Floor, Boaz and
+          Guo, Yiluan and Findler, Samuel and Vora, Sourabh},
+  booktitle={Conference on Robot Learning (CoRL)},
+  year={2026}
+}</div>
+    </section>
+
+    <footer class="footer">
+        &copy; 2026 Motional AD Inc. and the authors.<br>
+        Website design adapted from <a href="https://tomov.github.io/CW-Net/" target="_blank">CW-Net</a> and <a href="https://botcs.github.io/reason-to-play/" target="_blank">Reason to Play</a> by Csaba Botos.
+    </footer>
+
+</div>
+
+</body>
+</html>
