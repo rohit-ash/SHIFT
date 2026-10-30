@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SHIFT: Self-play is not enough: human imitation improves self-play autonomy in the wild</title>
     <meta name="description" content="SHIFT fine-tunes a self-play driving foundation policy on human driving logs, improving human-likeness, safety and comfort on nuPlan and on public roads. CoRL 2026.">
-    <link rel="stylesheet" href="style.css?v=20261030p">
+    <link rel="stylesheet" href="style.css?v=20261030q">
 </head>
 <body>
 
@@ -82,69 +82,43 @@
             <p>Self-play RL makes driving policies robust but not human-like. <strong>SHIFT</strong> (Self-play with Human Imitation Fine-Tuning) pretrains with large-scale self-play, then fine-tunes on human driving logs in closed-loop log replay, using the same PPO loop with one added human-similarity reward and a KL anchor to the frozen self-play policy.</p>
         </div>
 
-        <div class="stat-group-label sans-serif">nuPlan Val14 &middot; self-play &rarr; SHIFT</div>
+        <div class="stat-group-label sans-serif">nuPlan Val14 &middot; SHIFT vs. self-play</div>
         <div class="stat-row stat-row-4">
-            <div class="stat">
-                <div class="stat-label">ADE</div>
-                <div class="stat-values">
-                    <span class="stat-before">9.41</span>
-                    <span class="stat-arrow" aria-label="to">&rarr;</span>
-                    <span class="stat-after">8.04</span>
-                    <span class="stat-unit">m</span>
-                </div>
-                <div class="stat-sub">&minus;15% &middot; more human-like</div>
+            <div class="stat stat-factor">
+                <div class="stat-big">&minus;15%</div>
+                <div class="stat-what">ADE</div>
+                <div class="stat-sub">9.41 &rarr; 8.04 m</div>
             </div>
-            <div class="stat">
-                <div class="stat-label">Collisions</div>
-                <div class="stat-values">
-                    <span class="stat-before">0.064</span>
-                    <span class="stat-arrow" aria-label="to">&rarr;</span>
-                    <span class="stat-after">0.039</span>
-                </div>
-                <div class="stat-sub">&minus;39% &middot; safer</div>
+            <div class="stat stat-factor">
+                <div class="stat-big">&minus;39%</div>
+                <div class="stat-what">Collisions</div>
+                <div class="stat-sub">0.064 &rarr; 0.039</div>
             </div>
-            <div class="stat">
-                <div class="stat-label">Brake taps</div>
-                <div class="stat-values">
-                    <span class="stat-before">0.288</span>
-                    <span class="stat-arrow" aria-label="to">&rarr;</span>
-                    <span class="stat-after">0.197</span>
-                </div>
-                <div class="stat-sub">&minus;31% &middot; more comfortable</div>
+            <div class="stat stat-factor">
+                <div class="stat-big">&minus;31%</div>
+                <div class="stat-what">Brake taps</div>
+                <div class="stat-sub">0.288 &rarr; 0.197</div>
             </div>
-            <div class="stat">
-                <div class="stat-label">Oscillations</div>
-                <div class="stat-values">
-                    <span class="stat-before">0.090</span>
-                    <span class="stat-arrow" aria-label="to">&rarr;</span>
-                    <span class="stat-after">0.042</span>
-                </div>
-                <div class="stat-sub">&minus;53% &middot; smoother</div>
+            <div class="stat stat-factor">
+                <div class="stat-big">&minus;53%</div>
+                <div class="stat-what">Oscillations</div>
+                <div class="stat-sub">0.090 &rarr; 0.042</div>
             </div>
         </div>
 
-        <div class="stat-group-label sans-serif">Public roads &middot; self-play &rarr; SHIFT</div>
+        <div class="stat-group-label sans-serif">Public roads &middot; SHIFT vs. self-play</div>
         <div class="stat-row">
-            <div class="stat">
-                <div class="stat-label">Miles per safety takeover</div>
-                <div class="stat-values">
-                    <span class="stat-before">0.57</span>
-                    <span class="stat-arrow" aria-label="to">&rarr;</span>
-                    <span class="stat-after">1.46</span>
-                    <span class="stat-unit">mi</span>
-                </div>
-                <div class="stat-sub">2.6&times; fewer takeovers with SHIFT (both)</div>
+            <div class="stat stat-factor">
+                <div class="stat-big">2.6&times;</div>
+                <div class="stat-what">fewer safety takeovers</div>
+                <div class="stat-sub">One every 1.46 mi vs. every 0.57 mi</div>
             </div>
-            <div class="stat">
-                <div class="stat-label">Miles per discomfort event</div>
-                <div class="stat-values">
-                    <span class="stat-before">0.92</span>
-                    <span class="stat-arrow" aria-label="to">&rarr;</span>
-                    <span class="stat-after">13.1</span>
-                    <span class="stat-unit">mi</span>
-                </div>
-                <div class="stat-sub">Flagged by the onboard test team</div>
+            <div class="stat stat-factor">
+                <div class="stat-big">14&times;</div>
+                <div class="stat-what">fewer discomfort events</div>
+                <div class="stat-sub">One every 13.1 mi vs. every 0.92 mi</div>
             </div>
+        </div>
     </section>
 
     <section class="content-section" id="method">
@@ -279,8 +253,6 @@
         <h2 class="section-title sans-serif">Driving on public roads</h2>
         <div class="abstract-text">
             <p>We deployed the self-play baseline and SHIFT, fine-tuned on either the nominal dataset or both datasets, on autonomous vehicles on public roads in Las Vegas, with a safety driver, on loops around the Motional Las Vegas office. Both SHIFT variants needed fewer safety takeovers and improved on every discretionary metric (stuck, slow driving, discomfort, bad driving). To our knowledge, these are the first on-vehicle results for a policy pretrained with self-play and fine-tuned with imitation learning.</p>
-        </div>
-
         </div>
 
         <div class="table-wrap">
