@@ -93,7 +93,7 @@
             <p>Most hybrid methods learn from human data first and then use it to anchor self-play. SHIFT flips the order: it pretrains a robust foundation policy with large-scale self-play, then fine-tunes it on human driving. Fine-tuning takes hours rather than days, so adding a city or targeting a new capability doesn't mean re-running self-play.</p>
             <p>Both stages use the same network and the same PPO algorithm. Fine-tuning adds three things:</p>
             <ul class="tight-list">
-                <li><strong>Log replay.</strong> The policy drives through real driving logs while every other car replays what its human driver actually did.</li>
+                <li><strong>Log replay.</strong> The policy drives through real driving logs while every other road user replays what it actually did in the log.</li>
                 <li><strong>A human-similarity reward.</strong> One extra reward term for staying close to the human driver's trajectory.</li>
                 <li><strong>A KL anchor.</strong> Keeps the policy close to the frozen self-play policy, so it doesn't forget how to drive safely.</li>
             </ul>
