@@ -12,7 +12,7 @@
     --btn-hover: #e0e0e0;
     --btn-primary-bg: #111111;
     --btn-primary-fg: #ffffff;
-    --good: #1a7f4b;
+    --good: var(--motional-purple);
     --logo-filter: none;
     --motional-purple: #5c49f4;
     --shadow: 0 2px 6px rgba(17, 24, 39, 0.08), 0 12px 32px rgba(17, 24, 39, 0.12);
