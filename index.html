@@ -64,6 +64,7 @@
                 <span class="btn-note">Coming soon, check back on Nov 15</span>
             </span>
             <a href="#method" class="btn">Method</a>
+            <a href="#videos" class="btn">Videos</a>
             <a href="#results" class="btn">nuPlan Results</a>
             <a href="#deployment" class="btn">Public-Road Deployment</a>
             <a href="#citation" class="btn">Citation</a>
@@ -97,6 +98,49 @@
                 <li><strong>A human similarity reward.</strong> One extra term penalizes the Euclidean distance between the ego and the human expert at each step, with weight <span class="math">w<sub>similarity</sub> = 10<sup>&minus;2</sup></span>.</li>
                 <li><strong>A KL anchor.</strong> Without it, fine-tuning helps for a few hundred PPO cycles and then the policy forgets its self-play behavior. A KL loss against the frozen foundation policy, <span class="math">&beta; &middot; D<sub>KL</sub>(&pi;<sub>&theta;</sub> &Vert; &pi;<sub>pre</sub>)</span> with <span class="math">&beta; = 10<sup>&minus;2</sup></span>, allows long fine-tuning without losing it.</li>
             </ul>
+        </div>
+    </section>
+
+    <section class="content-section" id="videos">
+        <h2 class="section-title sans-serif">On-road videos</h2>
+
+        <p class="disclaimer sans-serif">This is a research project in Motional and is not representative of Motional's production AV's</p>
+
+        <!-- To fill a slot, replace its <div class="placeholder">…</div> with one of:
+             <video src="videos/selfplay-1.mp4" controls muted playsinline preload="metadata"></video>
+             <iframe src="https://www.youtube.com/embed/VIDEO_ID" allowfullscreen loading="lazy"></iframe>
+             Keep files small (H.264 MP4, ~720p, under ~25 MB each) so the repo stays light. -->
+
+        <div class="video-grid-2">
+            <div class="grid-header">Self-play</div>
+            <div class="grid-header">SHIFT</div>
+            <div class="pair-label sans-serif">Scenario 1</div>
+            <div class="video-wrapper">
+                <div class="video-container"><div class="placeholder">Video 1</div></div>
+                <div class="video-caption">Scenario 1 &mdash; Self-play</div>
+            </div>
+            <div class="video-wrapper">
+                <div class="video-container"><div class="placeholder">Video 2</div></div>
+                <div class="video-caption">Scenario 1 &mdash; SHIFT</div>
+            </div>
+            <div class="pair-label sans-serif">Scenario 2</div>
+            <div class="video-wrapper">
+                <div class="video-container"><div class="placeholder">Video 3</div></div>
+                <div class="video-caption">Scenario 2 &mdash; Self-play</div>
+            </div>
+            <div class="video-wrapper">
+                <div class="video-container"><div class="placeholder">Video 4</div></div>
+                <div class="video-caption">Scenario 2 &mdash; SHIFT</div>
+            </div>
+            <div class="pair-label sans-serif">Scenario 3</div>
+            <div class="video-wrapper">
+                <div class="video-container"><div class="placeholder">Video 5</div></div>
+                <div class="video-caption">Scenario 3 &mdash; Self-play</div>
+            </div>
+            <div class="video-wrapper">
+                <div class="video-container"><div class="placeholder">Video 6</div></div>
+                <div class="video-caption">Scenario 3 &mdash; SHIFT</div>
+            </div>
         </div>
     </section>
 
@@ -196,49 +240,6 @@
                     <span class="stat-unit">mi</span>
                 </div>
                 <div class="stat-sub">Flagged by the onboard test team</div>
-            </div>
-        </div>
-
-        <div class="concept-block">
-            <h3 class="concept-header sans-serif">On-road videos</h3>
-
-            <p class="disclaimer sans-serif">This is a research project in Motional and is not representative of Motional's production AV's</p>
-
-            <!-- To fill a slot, replace its <div class="placeholder">…</div> with one of:
-                 <video src="videos/selfplay-1.mp4" controls muted playsinline preload="metadata"></video>
-                 <iframe src="https://www.youtube.com/embed/VIDEO_ID" allowfullscreen loading="lazy"></iframe>
-                 Keep files small (H.264 MP4, ~720p, under ~25 MB each) so the repo stays light. -->
-
-            <div class="video-grid-2">
-                <div class="grid-header">Self-play</div>
-                <div class="grid-header">SHIFT</div>
-                <div class="pair-label sans-serif">Scenario 1</div>
-                <div class="video-wrapper">
-                    <div class="video-container"><div class="placeholder">Video 1</div></div>
-                    <div class="video-caption">Scenario 1 &mdash; Self-play</div>
-                </div>
-                <div class="video-wrapper">
-                    <div class="video-container"><div class="placeholder">Video 2</div></div>
-                    <div class="video-caption">Scenario 1 &mdash; SHIFT</div>
-                </div>
-                <div class="pair-label sans-serif">Scenario 2</div>
-                <div class="video-wrapper">
-                    <div class="video-container"><div class="placeholder">Video 3</div></div>
-                    <div class="video-caption">Scenario 2 &mdash; Self-play</div>
-                </div>
-                <div class="video-wrapper">
-                    <div class="video-container"><div class="placeholder">Video 4</div></div>
-                    <div class="video-caption">Scenario 2 &mdash; SHIFT</div>
-                </div>
-                <div class="pair-label sans-serif">Scenario 3</div>
-                <div class="video-wrapper">
-                    <div class="video-container"><div class="placeholder">Video 5</div></div>
-                    <div class="video-caption">Scenario 3 &mdash; Self-play</div>
-                </div>
-                <div class="video-wrapper">
-                    <div class="video-container"><div class="placeholder">Video 6</div></div>
-                    <div class="video-caption">Scenario 3 &mdash; SHIFT</div>
-                </div>
             </div>
         </div>
 
