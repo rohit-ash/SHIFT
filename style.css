@@ -221,7 +221,7 @@ a:focus-visible, .btn:focus-visible { outline: 2px solid var(--link-color); outl
 }
 .results-table .ours-col { background: var(--surface-alt); }
 .results-table .best { font-weight: 700; color: var(--text-strong); }
-.results-table td.ours-col.best { color: var(--good); }
+.results-table td.ours-col.best { color: var(--text-strong); }
 
 /* Real-world stat pair */
 .stat-row {
