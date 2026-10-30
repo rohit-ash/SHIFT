@@ -75,8 +75,8 @@
         <div class="tldr">
             <p>Self-play RL makes driving policies robust but not human-like. <strong>SHIFT</strong> (Self-play with Human Imitation Fine-Tuning) pretrains with large-scale self-play, then fine-tunes on human driving logs in closed-loop log replay, using the same PPO loop with one added human-similarity reward and a KL anchor to the frozen self-play policy.</p>
             <ul class="tldr-points">
-                <li><strong>nuPlan Val14:</strong> beats self-play on 9 of 10 metrics (ADE &minus;15%, collisions &minus;39%, oscillations &minus;53%) and every baseline on ADE, FDE, collisions and drivable-area violations.</li>
-                <li><strong>Public roads:</strong> 2.6&times; fewer safety takeovers than self-play. To our knowledge, this is the first on-road evaluation of self-play with human imitation.</li>
+                <li><strong>nuPlan Val14:</strong> beats self-play on 9 of 10 metrics across human-likeness (ADE &minus;15%), safety (collisions &minus;39%) and comfort (brake taps &minus;31%, oscillations &minus;53%), and every baseline on ADE, FDE, collisions and drivable-area violations.</li>
+                <li><strong>Public roads:</strong> 2.6&times; fewer safety takeovers than self-play, and far fewer discomfort events flagged by the onboard test team (one every 13.1 miles vs. every 0.92). To our knowledge, this is the first on-road evaluation of self-play and self-play with human imitation.</li>
             </ul>
         </div>
     </section>
