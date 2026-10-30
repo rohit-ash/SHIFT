@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Self-play is not enough: human imitation improves self-play autonomy in the wild</title>
-    <meta name="description" content="Fine-tuning a self-play driving policy on human demonstrations, stabilized by KL regularization, improves comfort, human-likeness and safety in simulation and on public roads.">
+    <title>SHIFT: Self-play is not enough: human imitation improves self-play autonomy in the wild</title>
+    <meta name="description" content="SHIFT fine-tunes a self-play driving foundation policy on human driving logs, improving human-likeness, safety and comfort on nuPlan and on public roads. CoRL 2026.">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -19,20 +19,18 @@
             <img class="logo-nyu" src="imgs/nyu-tandon.png" alt="NYU Tandon School of Engineering" width="170" onerror="this.remove()">
         </div>
 
-        <!-- Uncomment once the decision is public:
-        <div class="publication-badge sans-serif">CoRL 2026</div>
-        -->
+        <div class="publication-badge sans-serif">CoRL 2026 &middot; Austin, TX</div>
 
         <h1 class="title">Self-play is not enough: human imitation improves self-play autonomy in the wild</h1>
 
         <div class="authors">
-            <span class="author"><a href="https://openreview.net/profile?id=~Marc_Heim1" target="_blank">Marc Heim</a><sup>1*&Dagger;</sup></span>,
-            <span class="author"><a href="https://openreview.net/profile?id=~Bassam_Helou1" target="_blank">Bassam Helou</a><sup>1*&Dagger;</sup></span>,
-            <span class="author"><a href="https://openreview.net/profile?id=~Rohit_Satishkumar1" target="_blank">Rohit Satishkumar</a><sup>1,2*&sect;</sup></span>,
-            <span class="author"><a href="https://openreview.net/profile?id=~Momchil_Tomov1" target="_blank">Momchil Tomov</a><sup>1*</sup></span>,
+            <span class="author"><a href="https://openreview.net/profile?id=~Marc_Heim1" target="_blank">Marc Heim</a><sup>*,1,&Dagger;</sup></span>,
+            <span class="author"><a href="https://openreview.net/profile?id=~Bassam_Helou1" target="_blank">Bassam Helou</a><sup>*,1,&Dagger;</sup></span>,
+            <span class="author"><a href="https://openreview.net/profile?id=~Rohit_Satishkumar1" target="_blank">Rohit Satishkumar</a><sup>*,1,2,&sect;</sup></span>,
+            <span class="author"><a href="https://openreview.net/profile?id=~Momchil_Tomov1" target="_blank">Momchil S. Tomov</a><sup>*,1</sup></span>,
             <span class="author"><a href="https://openreview.net/profile?id=~Hansford_C._Hendargo1" target="_blank">Hansford C. Hendargo</a><sup>1</sup></span>,
             <span class="author"><a href="https://openreview.net/profile?id=~Nicolas_Rey1" target="_blank">Nicolas Rey</a><sup>1</sup></span>,
-            <span class="author"><a href="https://openreview.net/profile?id=~Gianmarco_Bernasconi1" target="_blank">Gianmarco Bernasconi</a><sup>1&Dagger;</sup></span>,
+            <span class="author"><a href="https://openreview.net/profile?id=~Gianmarco_Bernasconi1" target="_blank">Gianmarco Bernasconi</a><sup>1,&Dagger;</sup></span>,
             <span class="author"><a href="https://openreview.net/profile?id=~Joseph_Baker3" target="_blank">Joseph Baker</a><sup>1</sup></span>,
             <span class="author"><a href="https://openreview.net/profile?id=~Alexander_Boule1" target="_blank">Alexander Boule</a><sup>1</sup></span>,
             <span class="author">Rafael DaSilva<sup>1</sup></span>,
@@ -40,162 +38,259 @@
             <span class="author">Cedric Warny<sup>1</sup></span>,
             <span class="author"><a href="https://openreview.net/profile?id=~Yi_Huo3" target="_blank">Yi Huo</a><sup>1</sup></span>,
             <span class="author"><a href="https://openreview.net/profile?id=~Phuc_Xuan_Nguyen2" target="_blank">Phuc Nguyen</a><sup>1</sup></span>,
-            <span class="author"><a href="https://openreview.net/profile?id=~Neset_Unver_Akmandor1" target="_blank">Unver Akmandor</a><sup>1</sup></span>,
+            <span class="author"><a href="https://openreview.net/profile?id=~Neset_Unver_Akmandor1" target="_blank">Ne&#351;et &Uuml;nver Akmandor</a><sup>1</sup></span>,
             <span class="author"><a href="https://openreview.net/profile?id=~Sarjak_Thakkar1" target="_blank">Sarjak Thakkar</a><sup>1</sup></span>,
             <span class="author"><a href="https://openreview.net/profile?id=~Daphne_Cornelisse1" target="_blank">Daphne Cornelisse</a><sup>3</sup></span>,
             <span class="author"><a href="https://openreview.net/profile?id=~Eugene_Vinitsky1" target="_blank">Eugene Vinitsky</a><sup>3</sup></span>,
             <span class="author"><a href="https://openreview.net/profile?id=~Forbes_Howington1" target="_blank">Forbes Howington</a><sup>1</sup></span>,
             <span class="author"><a href="https://openreview.net/profile?id=~Boaz_Floor1" target="_blank">Boaz Floor</a><sup>1</sup></span>,
             <span class="author"><a href="https://openreview.net/profile?id=~Yiluan_Guo1" target="_blank">Yiluan Guo</a><sup>1</sup></span>,
-            <span class="author"><a href="https://openreview.net/profile?id=~Samuel_Findler1" target="_blank">Samuel Findler</a><sup>1</sup></span>,
-            <span class="author"><a href="https://openreview.net/profile?id=~Sourabh_Vora1" target="_blank">Sourabh Vora</a><sup>1</sup></span>
+            <span class="author"><a href="https://openreview.net/profile?id=~Samuel_Findler1" target="_blank">Samuel Findler</a><sup>1,&dagger;</sup></span>,
+            <span class="author"><a href="https://openreview.net/profile?id=~Sourabh_Vora1" target="_blank">Sourabh Vora</a><sup>1,&dagger;</sup></span>
         </div>
 
         <div class="affiliations">
-            <sup>1</sup> Motional AD Inc. | <sup>2</sup> Carnegie Mellon University | <sup>3</sup> NYU Tandon School of Engineering
+            <sup>1</sup> Motional &nbsp;|&nbsp; <sup>2</sup> Carnegie Mellon University &nbsp;|&nbsp; <sup>3</sup> NYU Tandon School of Engineering
         </div>
         <div class="author-notes">
-            <span><sup>*</sup> These authors contributed equally to this work.</span>
-            <span><sup>&Dagger;</sup> Work done while at Motional. &nbsp; <sup>&sect;</sup> Work done during an internship at Motional.</span>
+            <span><sup>*</sup> Equally contributing first authors &nbsp; <sup>&dagger;</sup> Equally contributing senior authors</span>
+            <span><sup>&Dagger;</sup> Work done while at Motional &nbsp; <sup>&sect;</sup> Work done during an internship at Motional</span>
         </div>
 
         <div class="nav-buttons">
-            <a href="https://openreview.net/forum?id=s8ZiyIAn3z" class="btn btn-primary" target="_blank">OpenReview Paper</a>
-            <!-- Swap in the arXiv link and drop btn-disabled once it is up -->
-            <a class="btn btn-disabled" aria-disabled="true">arXiv (coming soon)</a>
+            <a href="https://openreview.net/forum?id=s8ZiyIAn3z" class="btn btn-primary" target="_blank">Paper</a>
+            <span class="btn-stack">
+                <a class="btn btn-disabled" aria-disabled="true">Code</a>
+                <span class="btn-note">Coming soon, check back on Nov 15</span>
+            </span>
             <a href="#method" class="btn">Method</a>
-            <a href="#simulation" class="btn">Simulation Results</a>
+            <a href="#results" class="btn">nuPlan Results</a>
             <a href="#deployment" class="btn">Public-Road Deployment</a>
             <a href="#citation" class="btn">Citation</a>
         </div>
     </header>
 
     <section class="content-section" id="intro">
+        <h2 class="section-title sans-serif">Abstract</h2>
         <div class="abstract-text">
-            <p>Self-play reinforcement learning at scale has become a powerful way to train autonomous driving policies. Agents that learn by driving against copies of themselves in simulation become very good at avoiding collisions and navigating stably, without ever seeing a human drive.</p>
-            <p>That last part is also the problem. A policy trained purely through self-play never sees how people actually drive, so its trajectories can look unnatural: it taps the brakes, oscillates, and makes choices that a passenger or a nearby driver would not expect. Robustness alone does not make a policy comfortable or predictable on a real road.</p>
-            <p>We present a hybrid training framework that <strong>fine-tunes a pretrained self-play policy on real-world human driving demonstrations</strong>, without changing the underlying reinforcement learning algorithm. The result is more comfortable, more human-like and safer in simulation, and the gains carry over to self-driving cars on public roads. To our knowledge, this is the first evaluation of self-play and self-play with human imitation on public roads.</p>
+            <p>Self-play reinforcement learning at scale has emerged as a powerful paradigm for training autonomous driving policies, producing agents that exhibit robust collision avoidance and stable navigation in simulation. However, policies trained purely through self-play lack exposure to the distribution of real human driving behavior, resulting in trajectories that appear unnatural.</p>
+            <p>To overcome this, we present <strong>Self-play with Human Imitation Fine-Tuning (SHIFT)</strong>, a hybrid training framework that fine-tunes a pretrained self-play foundation policy on real-world driving demonstrations without changing the underlying reinforcement learning algorithm. SHIFT fine-tunes in closed-loop log-replay simulation, in which the ego vehicle is rolled out by the learned policy while the non-ego agents are replayed from logged human trajectories. Distance to the human expert trajectory is simply an additional reward term in the same PPO with advantage filtering algorithm used for pretraining. To enable extended fine-tuning without losing the base self-play performance, we use a KL regularization loss against the frozen self-play foundation policy.</p>
+            <p>On the closed-loop nuPlan Val14 benchmark, SHIFT improves over the self-play baseline in human-likeness, safety and comfort, and achieves the best ADE, FDE, collision and drivable-area scores among all baselines, including extended self-play, behavior cloning, BC+RL and human-regularized PPO. We deploy both policies on self-driving cars and find similar improvements in the real world: <strong>2.6&times; fewer safety takeovers</strong>. To our knowledge, this is the first evaluation of self-play and self-play with human imitation on public roads.</p>
         </div>
     </section>
 
     <section class="content-section" id="method">
-        <h2 class="section-title sans-serif">How it works</h2>
+        <h2 class="section-title sans-serif">How SHIFT works</h2>
 
-        <!-- Replace with: <img src="imgs/figure1.png" alt="Training pipeline overview" class="figure-img"> -->
-        <div class="placeholder" role="img" aria-label="Figure placeholder">imgs/figure1.png &mdash; training pipeline overview</div>
-        <div class="figure-caption">Figure 1: Self-play pretraining followed by fine-tuning with human imitation in agent-on-rails simulation, regularized toward the frozen self-play policy.</div>
+        <img src="imgs/figure1.png" alt="SHIFT training pipeline: stage 1 self-play pretraining, stage 2 human imitation fine-tuning" class="figure-img">
+        <div class="figure-caption">Figure 1: SHIFT training pipeline.</div>
 
         <div class="abstract-text">
-            <p>We start from a policy pretrained with large-scale self-play using PPO with advantage filtering. Fine-tuning keeps that algorithm exactly as it is and changes three things around it.</p>
-            <p><strong>Agent-on-rails simulation.</strong> We replay logged real-world driving scenes. The ego vehicle is rolled out by the learned policy, while every other agent is replayed from its logged human trajectory. The policy therefore practices in traffic that behaves the way real traffic did.</p>
-            <p><strong>Human imitation as a reward term.</strong> The distance between the ego trajectory and the logged human expert trajectory is added as one more term in the reward. Nothing else about the RL objective changes, so fine-tuning reuses the same training stack as pretraining.</p>
-            <p><strong>KL regularization.</strong> Fine-tuning for a long time on human data risks erasing what self-play taught the policy. We add a KL loss against the frozen pretrained self-play policy, which lets fine-tuning run for longer while keeping the robustness of the base policy.</p>
+            <p>Existing hybrid IL+RL methods follow an IL&rarr;RL pipeline: a pretrained imitation policy anchors self-play to the human driving distribution. That ordering makes iteration on the imitation side expensive, because adding a city, reweighting scenarios or refining a capability means rerunning self-play training. SHIFT reverses the order. We first pretrain a robust foundation policy with large-scale self-play, then fine-tune it on a modest amount of human driving data. Fine-tuning takes hours; self-play takes days.</p>
+            <p><strong>Stage 1: self-play pretraining.</strong> Following the Gigaflow recipe, every agent in each parallel world is controlled by the same shared policy, with diversity induced by sampling a different reward-conditioning vector per agent. Training uses PPO with advantage filtering.</p>
+            <p><strong>Stage 2: human imitation fine-tuning.</strong> The network, action space, optimizer and advantage filtering stay the same. Only four things change:</p>
+            <ul class="tight-list">
+                <li><strong>Closed-loop log replay.</strong> Each episode loads a real driving log. The ego is rolled out by the policy for 22 steps (&sim;6.6&nbsp;s), while every other agent replays its logged human trajectory.</li>
+                <li><strong>Fixed reward conditioning.</strong> All agents share one deployment-style conditioning vector, the same one used in nuPlan evaluation.</li>
+                <li><strong>A human similarity reward.</strong> One extra term penalizes the Euclidean distance between the ego and the human expert at each step, with weight <span class="math">w<sub>similarity</sub> = 10<sup>&minus;2</sup></span>.</li>
+                <li><strong>A KL anchor.</strong> Without it, fine-tuning helps for a few hundred PPO cycles and then the policy forgets its self-play behavior. A KL loss against the frozen foundation policy, <span class="math">&beta; &middot; D<sub>KL</sub>(&pi;<sub>&theta;</sub> &Vert; &pi;<sub>pre</sub>)</span> with <span class="math">&beta; = 10<sup>&minus;2</sup></span>, allows long fine-tuning without losing it.</li>
+            </ul>
         </div>
     </section>
 
-    <section class="content-section" id="simulation">
-        <h2 class="section-title sans-serif">Results in simulation</h2>
+    <section class="content-section" id="results">
+        <h2 class="section-title sans-serif">Results on nuPlan</h2>
         <div class="abstract-text">
-            <p>Compared to the self-play baseline, fine-tuning with human imitation improves every metric we track across comfort, human-likeness and safety. Brake taps drop by more than a factor of three, and the collision rate falls from 2.7% to 1.6%.</p>
+            <p>We fine-tune on &sim;92K scenes of human urban driving from 1,712 logs and evaluate on the held-out closed-loop nuPlan Val14 benchmark (1,115 scenarios, non-reactive agents). SHIFT outperforms the self-play baseline on 9 of 10 metrics, with the largest gains in human-likeness (ADE &minus;15%, FDE &minus;13%) and comfort (brake taps &minus;31%, oscillations &minus;53%). It is also safer: collisions &minus;39%, drivable-area violations &minus;32%, red-light violations &minus;39%.</p>
         </div>
+
+        <img src="imgs/figure2.png" alt="Radar chart of SHIFT's relative improvement over self-play on ten nuPlan metrics" class="figure-img figure-narrow">
+        <div class="figure-caption">Figure 2: Relative improvement of SHIFT over self-play on nuPlan Val14 (CLS-NR).</div>
 
         <div class="table-wrap">
             <table class="results-table">
                 <thead>
                     <tr>
                         <th scope="col">Metric</th>
-                        <th scope="col">Better</th>
                         <th scope="col">Self-play</th>
-                        <th scope="col">+ Human imitation</th>
+                        <th scope="col" class="ours-col">SHIFT</th>
+                        <th scope="col">Extra self-play</th>
+                        <th scope="col">BC only</th>
+                        <th scope="col">BC+RL</th>
+                        <th scope="col">TFISH</th>
+                        <th scope="col">HR-PPO</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="group"><td colspan="4">Comfort</td></tr>
-                    <tr><td>Brake tap rate</td><td>&darr;</td><td>26%</td><td class="ours">8%</td></tr>
-                    <tr><td>Oscillation rate</td><td>&darr;</td><td>19%</td><td class="ours">11%</td></tr>
-                    <tr class="group"><td colspan="4">Human-likeness</td></tr>
-                    <tr><td>ADE</td><td>&darr;</td><td>7.3 m</td><td class="ours">6.0 m</td></tr>
-                    <tr><td>FDE</td><td>&darr;</td><td>16 m</td><td class="ours">13 m</td></tr>
-                    <tr class="group"><td colspan="4">Safety</td></tr>
-                    <tr><td>Collision rate</td><td>&darr;</td><td>2.7%</td><td class="ours">1.6%</td></tr>
-                    <tr><td>Drivable area violations</td><td>&darr;</td><td>0.8%</td><td class="ours">0.6%</td></tr>
-                    <tr><td>Traffic light violations</td><td>&darr;</td><td>0.3%</td><td class="ours">0.2%</td></tr>
+                    <tr class="group"><td colspan="8">Human-likeness</td></tr>
+                    <tr><td>ADE (m) &darr;</td><td>9.406</td><td class="ours-col best">8.041</td><td>8.936</td><td>26.229</td><td>25.305</td><td>11.915</td><td>9.645</td></tr>
+                    <tr><td>FDE (m) &darr;</td><td>21.347</td><td class="ours-col best">18.542</td><td>20.050</td><td>72.606</td><td>57.800</td><td>30.522</td><td>21.914</td></tr>
+                    <tr class="group"><td colspan="8">Safety</td></tr>
+                    <tr><td>Collisions &darr;</td><td>0.064</td><td class="ours-col best">0.039</td><td>0.057</td><td>0.552</td><td>0.230</td><td>0.193</td><td>0.151</td></tr>
+                    <tr><td>Drivable area violations &darr;</td><td>0.025</td><td class="ours-col best">0.017</td><td>0.022</td><td>0.414</td><td>0.336</td><td>0.039</td><td class="best">0.017</td></tr>
+                    <tr><td>Red light violations &darr;</td><td>0.016</td><td class="ours-col">0.010</td><td>0.014</td><td>0.169</td><td class="best">0.007</td><td>0.013</td><td>0.015</td></tr>
+                    <tr><td>Speed limit violations &darr;</td><td>0.074</td><td class="ours-col">0.076</td><td>0.082</td><td>0.451</td><td class="best">0.065</td><td>0.080</td><td>0.094</td></tr>
+                    <tr class="group"><td colspan="8">Progress</td></tr>
+                    <tr><td>Progress along expert route &uarr;</td><td>0.762</td><td class="ours-col">0.797</td><td>0.801</td><td>0.666</td><td>0.276</td><td>0.662</td><td class="best">0.810</td></tr>
+                    <tr><td>Speed vs. expert (m/s) &uarr;</td><td>&minus;0.894</td><td class="ours-col">&minus;0.620</td><td>&minus;0.581</td><td class="best">2.588</td><td>&minus;3.992</td><td>&minus;1.719</td><td>&minus;0.663</td></tr>
+                    <tr class="group"><td colspan="8">Comfort</td></tr>
+                    <tr><td>Brake taps &darr;</td><td>0.288</td><td class="ours-col">0.197</td><td>0.285</td><td>0.124</td><td>0.639</td><td class="best">0.100</td><td>0.427</td></tr>
+                    <tr><td>Oscillations &darr;</td><td>0.090</td><td class="ours-col">0.042</td><td>0.091</td><td class="best">0.012</td><td>0.030</td><td>0.132</td><td>0.224</td></tr>
                 </tbody>
             </table>
         </div>
-        <div class="figure-caption">Table 1: Closed-loop simulation metrics for the self-play baseline and the fine-tuned policy.</div>
+        <div class="figure-caption">Table 1: Model comparison on the held-out nuPlan Val14 benchmark (CLS-NR). Bold is best per row.</div>
+
+        <img src="imgs/figure3.png" alt="Scatter plots of collisions, drivable-area violations, progress and brake taps against ADE for each method" class="figure-img">
+        <div class="figure-caption">Figure 3: Key safety, progress and comfort metrics compared to ADE.</div>
+
+        <div class="abstract-text">
+            <p><strong>Baselines.</strong> Extra self-play gives only modest gains. BC only is comfortable but unsafe, with 14&times; more collisions, 24&times; more drivable-area violations and 17&times; more red-light violations than SHIFT. Naively combining BC+RL from scratch does worse still, which points to the role of self-play pretraining in this limited-data regime. BC-regularized self-play (TFISH and HR-PPO), the conventional IL&rarr;RL ordering, does not match SHIFT.</p>
+        </div>
+
+        <img src="imgs/figure4.png" alt="Example nuPlan scenario comparing self-play, SHIFT and BC only trajectories with velocity, acceleration and steering profiles" class="figure-img">
+        <div class="figure-caption">Figure 4: Example nuPlan scenario. Self-play is safe but unhuman-like; SHIFT tracks the human expert with smooth kinematics; BC only is comfortable but drives off-route.</div>
+
+        <div class="concept-block">
+            <h3 class="concept-header sans-serif">Fine-tuning for specific capabilities</h3>
+            <div class="abstract-text">
+                <p>Because fine-tuning is cheap, the same foundation policy can be specialized quickly. Fine-tuning on a dataset of nominal driving already improves substantially over self-play. A curated close-proximity dataset helps most in dense traffic, where the policy keeps up with expert speed and brakes less. Fine-tuning on both datasets in sequence gives the best of both: it is best on six of ten metrics overall, with collisions &minus;44% and brake taps &minus;42% relative to self-play.</p>
+            </div>
+        </div>
+
+        <div class="concept-block">
+            <h3 class="concept-header sans-serif">Hyperparameter sweeps</h3>
+            <img src="imgs/figure6.png" alt="Sweeps over training cycles, similarity weight and KL weight on five nuPlan metrics" class="figure-img">
+            <div class="figure-caption">Figure 6: Sweeps over training cycle (top), similarity weight (middle) and KL regularization (bottom) around the main configuration (1,500 cycles, w<sub>similarity</sub> = 10<sup>&minus;2</sup>, &beta; = 10<sup>&minus;2</sup>).</div>
+            <div class="abstract-text">
+                <p>Most of the human-likeness gain arrives in the first few hundred PPO cycles, while safety stays flat or improves across all 1,500. Raising the similarity weight from pure RL toward pure BC improves human-likeness and comfort, but safety worsens past 10<sup>&minus;2</sup>. With too little KL, fine-tuning overwrites the self-play policy and behaves like BC only; with too much, the policy stops learning.</p>
+            </div>
+        </div>
     </section>
 
     <section class="content-section" id="deployment">
         <h2 class="section-title sans-serif">Driving on public roads</h2>
         <div class="abstract-text">
-            <p>We deployed both policies on self-driving cars and drove them on public roads. The improvements we saw in simulation showed up in the real world as well.</p>
+            <p>We deployed the self-play baseline and SHIFT, fine-tuned on either the nominal dataset or both datasets, on autonomous vehicles on public roads in Las Vegas, with a safety driver, on loops around the Motional Las Vegas office. Both SHIFT variants needed fewer safety takeovers and improved on every discretionary metric (stuck, slow driving, discomfort, bad driving). To our knowledge, these are the first on-vehicle results for a policy pretrained with self-play and fine-tuned with imitation learning.</p>
         </div>
 
         <div class="stat-row">
             <div class="stat">
-                <div class="stat-label">Miles between brake taps</div>
+                <div class="stat-label">Miles per safety takeover</div>
                 <div class="stat-values">
-                    <span class="stat-before">1.13</span>
+                    <span class="stat-before">0.57</span>
                     <span class="stat-arrow" aria-label="to">&rarr;</span>
-                    <span class="stat-after">7.3</span>
+                    <span class="stat-after">1.46</span>
                     <span class="stat-unit">mi</span>
                 </div>
+                <div class="stat-sub">2.6&times; fewer takeovers with SHIFT (both)</div>
             </div>
             <div class="stat">
-                <div class="stat-label">Safety takeovers</div>
+                <div class="stat-label">Miles per discomfort event</div>
                 <div class="stat-values">
-                    <span class="stat-before">1 every 0.59 mi</span>
+                    <span class="stat-before">0.92</span>
                     <span class="stat-arrow" aria-label="to">&rarr;</span>
-                    <span class="stat-after">None</span>
+                    <span class="stat-after">13.1</span>
+                    <span class="stat-unit">mi</span>
                 </div>
+                <div class="stat-sub">Flagged by the onboard test team</div>
             </div>
         </div>
 
-        <!-- Optional figure: <img src="imgs/figure2.png" alt="Real-world deployment" class="figure-img">
-             <div class="figure-caption">Figure 2: ...</div> -->
-
         <div class="concept-block">
-            <h3 class="concept-header sans-serif">Side-by-side drives</h3>
-            <!-- Duplicate this grid for each scenario. Replace each placeholder div with:
+            <h3 class="concept-header sans-serif">On-road videos</h3>
+
+            <p class="disclaimer sans-serif">This is a research project in Motional and is not representative of Motional's production AV's</p>
+
+            <!-- To fill a slot, replace its <div class="placeholder">…</div> with one of:
+                 <video src="videos/selfplay-1.mp4" controls muted playsinline preload="metadata"></video>
                  <iframe src="https://www.youtube.com/embed/VIDEO_ID" allowfullscreen loading="lazy"></iframe>
-                 or for a self-hosted file:
-                 <video src="videos/clip.mp4" controls muted playsinline></video> -->
-            <div class="video-grid-2-col">
-                <div class="grid-header">Self-play</div>
-                <div class="grid-header">Self-play + human imitation</div>
+                 Keep files small (H.264 MP4, ~720p, under ~25 MB each) so the repo stays light. -->
+
+            <div class="video-row-label sans-serif">Self-play</div>
+            <div class="video-grid-3">
                 <div class="video-wrapper">
-                    <div class="video-container">
-                        <div class="placeholder">YouTube embed</div>
-                    </div>
+                    <div class="video-container"><div class="placeholder">Video 1</div></div>
                     <div class="video-caption">Scenario 1 &mdash; Self-play</div>
                 </div>
                 <div class="video-wrapper">
-                    <div class="video-container">
-                        <div class="placeholder">YouTube embed</div>
-                    </div>
-                    <div class="video-caption">Scenario 1 &mdash; Self-play + human imitation</div>
+                    <div class="video-container"><div class="placeholder">Video 2</div></div>
+                    <div class="video-caption">Scenario 2 &mdash; Self-play</div>
+                </div>
+                <div class="video-wrapper">
+                    <div class="video-container"><div class="placeholder">Video 3</div></div>
+                    <div class="video-caption">Scenario 3 &mdash; Self-play</div>
+                </div>
+            </div>
+
+            <div class="video-row-label sans-serif">SHIFT</div>
+            <div class="video-grid-3">
+                <div class="video-wrapper">
+                    <div class="video-container"><div class="placeholder">Video 4</div></div>
+                    <div class="video-caption">Scenario 1 &mdash; SHIFT</div>
+                </div>
+                <div class="video-wrapper">
+                    <div class="video-container"><div class="placeholder">Video 5</div></div>
+                    <div class="video-caption">Scenario 2 &mdash; SHIFT</div>
+                </div>
+                <div class="video-wrapper">
+                    <div class="video-container"><div class="placeholder">Video 6</div></div>
+                    <div class="video-caption">Scenario 3 &mdash; SHIFT</div>
                 </div>
             </div>
         </div>
+
+        <div class="table-wrap">
+            <table class="results-table">
+                <thead>
+                    <tr>
+                        <th scope="col">Metric (miles per event &uarr;)</th>
+                        <th scope="col">Self-play</th>
+                        <th scope="col" class="ours-col">SHIFT (nominal)</th>
+                        <th scope="col" class="ours-col">SHIFT (both)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Total auto-miles</td><td>14.8</td><td class="ours-col">18.5</td><td class="ours-col">13.1</td></tr>
+                    <tr class="group"><td colspan="4">Discretionary metrics</td></tr>
+                    <tr><td>Takeovers</td><td>0.568</td><td class="ours-col">1.322</td><td class="ours-col best">1.456</td></tr>
+                    <tr><td>Stuck</td><td>0.739</td><td class="ours-col">1.851</td><td class="ours-col best">1.871</td></tr>
+                    <tr><td>Slow driving</td><td>0.314</td><td class="ours-col">0.544</td><td class="ours-col best">0.655</td></tr>
+                    <tr><td>Discomfort</td><td>0.924</td><td class="ours-col">1.157</td><td class="ours-col best">13.100</td></tr>
+                    <tr><td>Bad driving</td><td>0.141</td><td class="ours-col">0.220</td><td class="ours-col best">0.279</td></tr>
+                    <tr class="group"><td colspan="4">Objective metrics</td></tr>
+                    <tr><td>Brake taps</td><td>1.478</td><td class="ours-col best">2.644</td><td class="ours-col">0.819</td></tr>
+                    <tr><td>Jerk violations</td><td>0.139</td><td class="ours-col best">0.180</td><td class="ours-col">0.109</td></tr>
+                    <tr><td>Acceleration violations</td><td>0.119</td><td class="ours-col best">0.123</td><td class="ours-col">0.098</td></tr>
+                    <tr><td>Oscillations</td><td>2.956</td><td class="ours-col">1.322</td><td class="ours-col best">4.367</td></tr>
+                    <tr><td>Steering rate violations</td><td class="best">0.591</td><td class="ours-col">0.561</td><td class="ours-col">0.570</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="figure-caption">Table 3: Public-road evaluation. Routes were similar but not identical, so mileage differs.</div>
     </section>
 
-    <section class="content-section" id="looking-ahead">
-        <h2 class="section-title sans-serif">Looking ahead</h2>
+    <section class="content-section" id="limitations">
+        <h2 class="section-title sans-serif">Limitations</h2>
         <div class="abstract-text">
-            <p>Self-play gives a driving policy robustness, and human data gives it the behavior people expect. Our results suggest that post-training a self-play policy with human imitation, stabilized by KL regularization, is a promising direction for deployable autonomous driving systems.</p>
+            <p>Non-reactive log replay limits episodes to 6.6 seconds; beyond that, replayed agents collide with the ego once its trajectory diverges from the log. Rolling out and supervising all agents during fine-tuning could remove this limit. Some edge cases involving yellow lights and stop signs degrade after fine-tuning, which suggests residual conflict between imitation and strict rule-following even with KL regularization. Our public-road tests also cover limited mileage, so further on-road evaluation is needed.</p>
         </div>
+    </section>
+
+    <section class="content-section" id="code">
+        <h2 class="section-title sans-serif">Code</h2>
+        <p class="coming-soon sans-serif">Coming soon, check back on Nov 15.</p>
     </section>
 
     <section class="content-section" id="citation">
         <h2 class="section-title sans-serif">Citation</h2>
         <p>If you find this work useful in your research, please consider citing:</p>
-<div class="citation-block">@inproceedings{heim2026selfplay,
+<div class="citation-block">@inproceedings{heim2026shift,
   title={Self-play is not enough: human imitation improves self-play autonomy in the wild},
-  author={Heim, Marc and Helou, Bassam and Satishkumar, Rohit and Tomov, Momchil and
+  author={Heim, Marc and Helou, Bassam and Satishkumar, Rohit and Tomov, Momchil S. and
           Hendargo, Hansford C. and Rey, Nicolas and Bernasconi, Gianmarco and Baker, Joseph and
           Boule, Alexander and DaSilva, Rafael and Ghanbari, Abed and Warny, Cedric and
-          Huo, Yi and Nguyen, Phuc and Akmandor, Unver and Thakkar, Sarjak and
+          Huo, Yi and Nguyen, Phuc and Akmandor, Ne{\c{s}}et {\"U}nver and Thakkar, Sarjak and
           Cornelisse, Daphne and Vinitsky, Eugene and Howington, Forbes and Floor, Boaz and
           Guo, Yiluan and Findler, Samuel and Vora, Sourabh},
   booktitle={Conference on Robot Learning (CoRL)},
@@ -204,7 +299,7 @@
     </section>
 
     <footer class="footer">
-        &copy; 2026 Motional AD Inc. and the authors.<br>
+        Contact: rohit.satishkumar, momchil.tomov, samuel.findler, sourabh.vora @motional.com<br>
         Website design adapted from <a href="https://tomov.github.io/CW-Net/" target="_blank">CW-Net</a> and <a href="https://botcs.github.io/reason-to-play/" target="_blank">Reason to Play</a> by Csaba Botos.
     </footer>
 
