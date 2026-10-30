@@ -407,3 +407,58 @@ a:focus-visible, .btn:focus-visible { outline: 2px solid var(--link-color); outl
 
 /* Same lift as the figures */
 .stat, .video-wrapper { box-shadow: var(--shadow); }
+
+/* Top navbar */
+.topnav {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    margin: 0 -16px;
+    background: rgba(255, 255, 255, 0.92);
+    -webkit-backdrop-filter: saturate(180%) blur(8px);
+    backdrop-filter: saturate(180%) blur(8px);
+    border-bottom: 1px solid var(--border-color);
+}
+.topnav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 16px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+.topnav-brand {
+    flex: none;
+    font-weight: 700;
+    font-size: 1.05em;
+    letter-spacing: 0.04em;
+    color: var(--text-strong);
+}
+.topnav-links {
+    display: flex;
+    gap: 22px;
+    margin-left: auto;
+    min-width: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    white-space: nowrap;
+}
+.topnav-links::-webkit-scrollbar { display: none; }
+.topnav a { color: var(--text-main); font-size: 0.95em; text-decoration: none; }
+.topnav-links a { color: var(--text-light); padding: 6px 0; }
+.topnav a:hover { color: var(--text-strong); text-decoration: none; }
+.content-section, #top { scroll-margin-top: 64px; }
+@media (max-width: 600px) {
+    .topnav-inner { gap: 16px; }
+    .topnav-links { gap: 16px; margin-left: 0; }
+}
+.topnav sup { line-height: 0; vertical-align: 0.5em; }
+@media (max-width: 600px) {
+    .topnav-links {
+        -webkit-mask-image: linear-gradient(to right, #000 85%, transparent);
+        mask-image: linear-gradient(to right, #000 85%, transparent);
+        padding-right: 24px;
+    }
+}
