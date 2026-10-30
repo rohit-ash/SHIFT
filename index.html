@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SHIFT: Self-play is not enough: human imitation improves self-play autonomy in the wild</title>
     <meta name="description" content="SHIFT fine-tunes a self-play driving foundation policy on human driving logs, improving human-likeness, safety and comfort on nuPlan and on public roads. CoRL 2026.">
-    <link rel="stylesheet" href="style.css?v=20261030r">
+    <link rel="stylesheet" href="style.css?v=20261030s">
 </head>
 <body>
 
@@ -143,10 +143,6 @@
 
     <section class="content-section" id="results">
         <h2 class="section-title sans-serif">Results on nuPlan</h2>
-        <div class="abstract-text">
-            <p>We fine-tune on &sim;92K scenes of human urban driving from 1,712 logs and evaluate on the held-out closed-loop nuPlan Val14 benchmark (1,115 scenarios, non-reactive agents). SHIFT outperforms the self-play baseline on 9 of 10 metrics, with the largest gains in human-likeness (ADE &minus;15%, FDE &minus;13%) and comfort (brake taps &minus;31%, oscillations &minus;53%). It is also safer: collisions &minus;39%, drivable-area violations &minus;32%, red-light violations &minus;39%.</p>
-        </div>
-
         <div class="stat-row stat-row-4">
             <div class="stat stat-factor">
                 <div class="stat-big">&minus;15%</div>
@@ -168,6 +164,10 @@
                 <div class="stat-what">Oscillations vs. self-play</div>
                 <div class="stat-sub">Self-play 0.090 &rarr; SHIFT 0.042</div>
             </div>
+        </div>
+
+        <div class="abstract-text">
+            <p>We fine-tune on &sim;92K scenes of human urban driving from 1,712 logs and evaluate on the held-out closed-loop nuPlan Val14 benchmark (1,115 scenarios, non-reactive agents). SHIFT outperforms the self-play baseline on 9 of 10 metrics, with the largest gains in human-likeness (ADE &minus;15%, FDE &minus;13%) and comfort (brake taps &minus;31%, oscillations &minus;53%). It is also safer: collisions &minus;39%, drivable-area violations &minus;32%, red-light violations &minus;39%.</p>
         </div>
 
         <img src="imgs/figure2.png" alt="Radar chart of SHIFT's relative improvement over self-play on ten nuPlan metrics" class="figure-img figure-narrow">
@@ -236,10 +236,6 @@
 
     <section class="content-section" id="deployment">
         <h2 class="section-title sans-serif">Driving on public roads</h2>
-        <div class="abstract-text">
-            <p>We deployed the self-play baseline and SHIFT, fine-tuned on either the nominal dataset or both datasets, on autonomous vehicles on public roads in Las Vegas, with a safety driver, on loops around the Motional Las Vegas office. Both SHIFT variants needed fewer safety takeovers and improved on every discretionary metric (stuck, slow driving, discomfort, bad driving). To our knowledge, these are the first on-vehicle results for a policy pretrained with self-play and fine-tuned with imitation learning.</p>
-        </div>
-
         <div class="stat-row">
             <div class="stat stat-factor">
                 <div class="stat-big">2.6&times;</div>
@@ -251,6 +247,10 @@
                 <div class="stat-what">fewer discomfort events than self-play</div>
                 <div class="stat-sub">One every 13.1 mi with SHIFT vs. every 0.92 mi with self-play</div>
             </div>
+        </div>
+
+        <div class="abstract-text">
+            <p>We deployed the self-play baseline and SHIFT, fine-tuned on either the nominal dataset or both datasets, on autonomous vehicles on public roads in Las Vegas, with a safety driver, on loops around the Motional Las Vegas office. Both SHIFT variants needed fewer safety takeovers and improved on every discretionary metric (stuck, slow driving, discomfort, bad driving). To our knowledge, these are the first on-vehicle results for a policy pretrained with self-play and fine-tuned with imitation learning.</p>
         </div>
 
         <div class="table-wrap">
