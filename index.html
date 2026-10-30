@@ -90,14 +90,12 @@
         <div class="figure-caption">Figure 1: SHIFT training pipeline.</div>
 
         <div class="abstract-text">
-            <p>Existing hybrid IL+RL methods follow an IL&rarr;RL pipeline: a pretrained imitation policy anchors self-play to the human driving distribution. That ordering makes iteration on the imitation side expensive, because adding a city, reweighting scenarios or refining a capability means rerunning self-play training. SHIFT reverses the order. We first pretrain a robust foundation policy with large-scale self-play, then fine-tune it on a modest amount of human driving data. Fine-tuning takes hours; self-play takes days.</p>
-            <p><strong>Stage 1: self-play pretraining.</strong> Following the Gigaflow recipe, every agent in each parallel world is controlled by the same shared policy, with diversity induced by sampling a different reward-conditioning vector per agent. Training uses PPO with advantage filtering.</p>
-            <p><strong>Stage 2: human imitation fine-tuning.</strong> The network, action space, optimizer and advantage filtering stay the same. Only four things change:</p>
+            <p>Most hybrid methods learn from human data first and then use it to anchor self-play. SHIFT flips the order: it pretrains a robust foundation policy with large-scale self-play, then fine-tunes it on human driving. Fine-tuning takes hours rather than days, so adding a city or targeting a new capability doesn't mean re-running self-play.</p>
+            <p>Both stages use the same network and the same PPO algorithm. Fine-tuning adds three things:</p>
             <ul class="tight-list">
-                <li><strong>Closed-loop log replay.</strong> Each episode loads a real driving log. The ego is rolled out by the policy for 22 steps (&sim;6.6&nbsp;s), while every other agent replays its logged human trajectory.</li>
-                <li><strong>Fixed reward conditioning.</strong> All agents share one deployment-style conditioning vector, the same one used in nuPlan evaluation.</li>
-                <li><strong>A human similarity reward.</strong> One extra term penalizes the Euclidean distance between the ego and the human expert at each step, with weight <span class="math">w<sub>similarity</sub> = 10<sup>&minus;2</sup></span>.</li>
-                <li><strong>A KL anchor.</strong> Without it, fine-tuning helps for a few hundred PPO cycles and then the policy forgets its self-play behavior. A KL loss against the frozen foundation policy, <span class="math">&beta; &middot; D<sub>KL</sub>(&pi;<sub>&theta;</sub> &Vert; &pi;<sub>pre</sub>)</span> with <span class="math">&beta; = 10<sup>&minus;2</sup></span>, allows long fine-tuning without losing it.</li>
+                <li><strong>Log replay.</strong> The policy drives through real driving logs while every other car replays what its human driver actually did.</li>
+                <li><strong>A human-similarity reward.</strong> One extra reward term for staying close to the human driver's trajectory.</li>
+                <li><strong>A KL anchor.</strong> Keeps the policy close to the frozen self-play policy, so it doesn't forget how to drive safely.</li>
             </ul>
         </div>
     </section>
