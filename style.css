@@ -14,6 +14,7 @@
     --btn-primary-fg: #ffffff;
     --good: #1a7f4b;
     --logo-filter: none;
+    --motional-purple: #5c49f4;
     --shadow: 0 2px 6px rgba(17, 24, 39, 0.08), 0 12px 32px rgba(17, 24, 39, 0.12);
     color-scheme: light;
 }
@@ -125,11 +126,11 @@ a:focus-visible, .btn:focus-visible { outline: 2px solid var(--link-color); outl
     border-radius: 5px;
     border: 1px solid var(--border-color);
     font-size: 0.95em;
-    transition: background 0.2s, transform 0.1s;
+    transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.1s;
 }
 .btn:hover { background-color: var(--btn-hover); text-decoration: none; transform: translateY(-1px); }
-.btn-primary { background-color: var(--btn-primary-bg); color: var(--btn-primary-fg); border-color: var(--btn-primary-bg); }
-.btn-primary:hover { background-color: var(--btn-primary-bg); opacity: 0.85; }
+.btn-primary { background-color: #ffffff; color: var(--text-strong); border-color: #d6d6dc; }
+.btn-primary:hover { background-color: var(--motional-purple); border-color: var(--motional-purple); color: #ffffff; }
 .btn-disabled { opacity: 0.6; cursor: default; }
 .btn-disabled:hover { background-color: var(--btn-bg); transform: none; }
 
@@ -448,7 +449,7 @@ a:focus-visible, .btn:focus-visible { outline: 2px solid var(--link-color); outl
 .topnav-links::-webkit-scrollbar { display: none; }
 .topnav a { color: var(--text-main); font-size: 0.95em; text-decoration: none; }
 .topnav-links a { color: var(--text-light); padding: 6px 0; }
-.topnav a:hover { color: var(--text-strong); text-decoration: none; }
+.topnav a:hover, .topnav a:focus-visible { color: var(--motional-purple); text-decoration: none; }
 .content-section, #top { scroll-margin-top: 64px; }
 @media (max-width: 600px) {
     .topnav-inner { gap: 16px; }
@@ -462,3 +463,4 @@ a:focus-visible, .btn:focus-visible { outline: 2px solid var(--link-color); outl
         padding-right: 24px;
     }
 }
+.topnav a { transition: color 0.15s; }
