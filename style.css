@@ -421,3 +421,8 @@ a:focus-visible, .btn:focus-visible { outline: 2px solid var(--link-color); outl
 @media (max-width: 480px) {
     .video-grid-2 { grid-template-columns: 1fr; }
 }
+
+/* TL;DR */
+.tldr { font-size: 1.12em; line-height: 1.65; }
+.tldr p { margin: 0 0 0.8em; }
+.tldr-points { margin: 0; padding-left: 1.3em; display: grid; gap: 0.4em; }
