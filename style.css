@@ -108,14 +108,12 @@ a:focus-visible, .btn:focus-visible { outline: 2px solid var(--link-color); outl
 .logo-nyu { width: 170px; }
 
 .publication-badge {
-    display: inline-block;
-    background-color: var(--btn-primary-bg);
-    color: var(--btn-primary-fg);
-    padding: 5px 12px;
-    font-size: 0.9em;
-    border-radius: 4px;
-    margin-bottom: 20px;
-    letter-spacing: 0.5px;
+    display: block;
+    margin: 4px 0 6px;
+    font-size: 1.35em;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--text-strong);
 }
 
 .title {
@@ -390,21 +388,6 @@ a:focus-visible, .btn:focus-visible { outline: 2px solid var(--link-color); outl
 }
 @media (max-width: 420px) { .btn-stack { width: 100%; } }
 
-/* Video slots: 3 per row */
-.video-grid-3 {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 16px;
-    margin-bottom: 28px;
-}
-.video-row-label {
-    font-size: 0.85em;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--text-light);
-    margin: 0 0 10px;
-}
 .disclaimer {
     margin: 0 0 24px;
     padding: 12px 16px;
@@ -415,4 +398,25 @@ a:focus-visible, .btn:focus-visible { outline: 2px solid var(--link-color); outl
     font-size: 0.92em;
     font-style: italic;
 }
-@media (max-width: 768px) { .video-grid-3 { grid-template-columns: 1fr; } }
+
+/* Video comparisons: Self-play | SHIFT, one scenario per row */
+.video-grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px 20px;
+}
+.video-grid-2 .grid-header { margin-bottom: -6px; }
+.pair-label {
+    grid-column: 1 / -1;
+    margin-top: 12px;
+    font-size: 0.85em;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 6px;
+}
+@media (max-width: 768px) {
+    .video-grid-2 { grid-template-columns: 1fr; }
+}
